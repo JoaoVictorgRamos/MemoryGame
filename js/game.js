@@ -1,4 +1,6 @@
 const grid = document.querySelector(".grid");
+const spanPlayer = document.querySelector(".player");
+const timer = document.querySelector(".timer");
 
 const characters = [
   "beth",
@@ -25,7 +27,10 @@ let secondCard = "";
 const checkEndGame = () => {
   const disableCards = document.querySelectorAll(".disable-card");
   if (disableCards.length === 20) {
-    alert("Parabéns , você ganhou ");
+    clearInterval(this.loop);
+    alert(
+      `Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi : ${timer.innerHTML}s`
+    );
   }
 };
 
@@ -94,4 +99,17 @@ const loadGame = () => {
   });
 };
 
-loadGame();
+const startTimer = () => {
+  this.loop = setInterval(() => {
+    const currentTimer = +timer.innerHTML;
+    timer.innerHTML = currentTimer + 1;
+  }, 1000);
+};
+
+window.onload = () => {
+  const playerName = localStorage.getItem("player");
+
+  spanPlayer.innerHTML = playerName;
+  startTimer();
+  loadGame();
+};
