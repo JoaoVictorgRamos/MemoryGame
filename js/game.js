@@ -82,7 +82,6 @@ const createCard = (character) => {
   card.appendChild(back);
 
   card.addEventListener("click", revealCard);
-  card.addEventListener("click", startTimer);
 
   card.setAttribute("data-character", character);
 
@@ -111,5 +110,6 @@ window.onload = () => {
   const playerName = localStorage.getItem("player");
 
   spanPlayer.innerHTML = playerName;
+  startTimer();
   loadGame();
 };
